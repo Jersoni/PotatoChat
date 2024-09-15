@@ -1,12 +1,15 @@
 import { ChakraProvider, Switch } from "@chakra-ui/react";
 import { MdOutlineLogout } from "react-icons/md";
 import { signOut } from "next-auth/react";
+import { UserProps } from "@/types";
 
 const Menu = ({
+    user,
     isOpen,
     darkMode,
     setDarkMode
 } : {
+    user: UserProps | undefined
     isOpen: boolean
     darkMode: boolean
     setDarkMode: () => void
@@ -18,8 +21,21 @@ const Menu = ({
 
   return (
     <ChakraProvider>
-      <div className={`${isOpen ? "translate-y-[155%]" : ""} transition-all rounded-sm fixed right-2 top-[-100px] flex flex-col items-start h-fitw-fit bg-white p-2 z-[1000] `}>
-        <button className="py-3 px-2 flex flex-row items-center gap-3 border-b border-gray-300">
+      <div className={`${isOpen ? "translate-y-[17.5rem]" : ""} transition-all duration-[300ms] rounded-sm fixed right-2.5 top-[-200px] flex flex-col items-start h-fitw-fit bg-white p-3 z-[1000] `}>
+        <div className="flex flex-col items-center w-full p-2 pb-4 pt-2 gap-3">
+          <img 
+            src={user?.image} 
+            alt={`profile image`} 
+            height={55}
+            width={55}
+            className="rounded-full"
+          />
+          <div className="flex flex-col items-center">
+            <p className="font-semibold">{user?.fullname}</p>
+            <p>@{user?.username}</p>
+          </div>
+        </div>
+        <button className="py-3 px-2 w-full flex flex-row items-center justify-between border-y border-gray-300">
           Dark Mode
           <Switch size={"md"} className="outline-none" colorScheme="blue" onChange={setDarkMode} isChecked={darkMode} />
         </button>

@@ -11,29 +11,27 @@ const Messagebox = ({
     onSubmit: (e: FormEvent<HTMLFormElement>) => void
 }) => {
   return (
-    <div className={`p-2 pb-6 w-full fixed bottom-0 border bg-[#272e38]`}>
+    <div className={`p-3 pb-6 w-full fixed bottom-0 border bg-[#27292b]`}>
         <form 
             action=""
             onSubmit={e => {
                 onSubmit(e)
             }} 
-            className='flex'
+            className='flex gap-3'
         >
             <input 
                 type="text" 
-                className='p-1 px-3 w-full outline-none' 
+                className='p-1 px-3 w-full outline-none rounded-full' 
                 placeholder="Aa" 
                 onChange={onChange}
                 value={message}
             />
 
-            <button 
-                type="submit" 
-                className='p-2 bg-gray-400 '
-            >
+            <button type="submit">
                 <IoSend 
-                    size={22}
-                    fill={''} />
+                    size={24}
+                    fill={'gray'} 
+                />
             </button>
         </form>
     </div>

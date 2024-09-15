@@ -1,10 +1,10 @@
 'use client'
 import { UserProps } from "@/types";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import { FaCircleUser } from "react-icons/fa6";
 import { HiMenuAlt4 } from "react-icons/hi";
 import Menu from "./Menu";
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 
 const Header = ({
     user,
@@ -21,15 +21,26 @@ const Header = ({
 
     useEffect(() => {
         if (session) console.log(session)
+
+            console.log(session?.user?.image)
     }, [session])
 
     return (
         <div className="fixed top-0 left-0 right-0">
-            <div className={`${darkMode ? "bg-[#30343b]" : ""} p-3 flex flex-row gap-3 w-full bg-white items-center z-[1500] bg-opacity-80 backdrop-blur-md relative`}>
-                <FaCircleUser size={40} />
+            <div className={`${darkMode ? "bg-[#30343b]" : ""} p-3 flex flex-row gap-2 w-full bg-white items-center z-[1500] bg-opacity-80 backdrop-blur-md relative`}>
+                {user && (
+                    <FaCircleUser size={40} />
+                    // <img
+                    //     src={user.image}
+                    //     alt={"User profile"}
+                    //     height={40}
+                    //     width={40}
+                    //     className={`rounded-full`}
+                    // />
+                )}
                 <div className={`${darkMode ? "text-gray-400" : ""} flex flex-col`}>
-                    <h1 className='font-semibold'>{user?.username}</h1>
-                    <h6 className='text-sm text-opacity-40'>{user?.fullname}</h6>
+                    <h1 className='font-semibold'>Patatas</h1>
+                    <h6 className='text-sm text-opacity-40'>Jinky Borja Suson</h6>
                 </div>
                 <button 
                     className="p-1.5 rounded-full ml-auto"
@@ -43,6 +54,7 @@ const Header = ({
                 >Sign out</button> */}
             </div>
             <Menu 
+                user={user}
                 isOpen={isMenuOpen} 
                 darkMode={darkMode} 
                 setDarkMode={setDarkMode} 
