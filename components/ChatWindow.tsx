@@ -1,11 +1,36 @@
+'use client'
+import { MessageProps, UserProps } from "@/types";
 import ChatBubble from "./ChatBubble";
+import { useEffect } from "react";
 
-const ChatWindow = () => {
+const ChatWindow = ({ 
+  user,
+  messages
+}: { 
+  user: UserProps | undefined
+  messages: MessageProps[] 
+}) => {
+
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: document.documentElement.scrollHeight,
+  //     behavior: 'smooth',
+  //   });
+  // })
+
   return (
-    <div className="h-fit mt-auto p-3 flex flex-col gap-1">
-      <ChatBubble content={`hello`} role="reciever" />
-      <ChatBubble content={`Whats up nigga`} role="reciever" />
-      <ChatBubble content={`Good bye`} role="sender" />
+    <div className="p-3 gap-1 py-20 flex flex-col">
+      {messages.map((row) => {
+        return (
+          <ChatBubble 
+            user={user} 
+            data={row}
+            role={user?.id === row.sender_id ? "sender" : "reciever"} 
+            key={row.id}
+          />
+        )
+      })
+    }
     </div>
   );
 };

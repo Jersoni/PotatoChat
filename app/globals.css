@@ -4,16 +4,17 @@
 
 :root {
   /* --background: #e0c3de; */
-  --background: #efe6ee;
+  /* --background: #efe6ee; */
+  --background: #ffffff;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
-    /* --background: #262829; */
-    /* --foreground: #ededed; */
+    --background: #262829;
+    --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
@@ -22,6 +23,9 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 @layer utilities {

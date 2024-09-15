@@ -1,79 +1,19 @@
-"use client";
-import { ChatWindow, Header, Messagebox } from "@/components";
-import supabase from "@/lib/supabaseClient";
-import { UserProps } from "@/types";
-import { ChangeEvent, useEffect, useState } from "react";
+'use client'
+import { GoogleSignInButton } from "@/components"
 
-export default function Home() {
-  
-  // dark mode
-  const [darkMode, setDarkMode] = useState(false);
-
-  // user
-  const [user, setUser] = useState<UserProps>();
-
-  // get user data
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data, error } = await supabase
-        .from("users")
-        .select("*")
-        .eq("id", 1);
-
-      if (error) {
-        console.log(error);
-      } else {
-        setUser(data[0]);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  // message
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    console.log(message)
-  }, [message])
-
-  // messagebox change handler
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-  };
-
-  // messagebox submit handler
-  const MessageSubmitHandler = async () => {
-    console.log("sending");
-    const { data, error } = await supabase.from("messages").insert({
-      sender_id: user?.id,
-      reciever_id: 2,
-      message: message,
-    });
-
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("sent: " + data);
-    }
-  };
+const Login = () => {
 
   return (
-    <div
-      className={`${darkMode ? "bg-gray-300" : ""} 
-      flex flex-col h-[100vh]`}
+    <div 
+      className={`grid place-items-center justify-center bg-neutral-900 overflow-hidden fixed top-0 left-0 right-0 bottom-0`} 
+      // className={`grid place-items-center justify-center bg-white overflow-hidden fixed top-0 left-0 right-0 bottom-0`} 
     >
-      <Header
-        user={user}
-        darkMode={darkMode}
-        setDarkMode={() => setDarkMode(!darkMode)}
-      />
-      <ChatWindow />
-      <Messagebox
-        onChange={onInputChange}
-        message={message}
-        onSubmit={MessageSubmitHandler}
-      />
+      <div className="flex flex-col gap-6">
+        <h1 className="font-bold text-white text-center text-2xl">Sign In</h1>     
+        <GoogleSignInButton />
+      </div>
     </div>
-  );
+  )
 }
+
+export default Login

@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import { IoSend } from "react-icons/io5";
 
 const Messagebox = ({
@@ -8,18 +8,20 @@ const Messagebox = ({
 } : {
     message: string
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
-    onSubmit: () => void
+    onSubmit: (e: FormEvent<HTMLFormElement>) => void
 }) => {
   return (
-    <div className='p-3 pb-6'>
+    <div className={`p-2 pb-6 w-full fixed bottom-0 border bg-[#272e38]`}>
         <form 
-            action="" 
-            onSubmit={onSubmit} 
-            className='flex gap-2'
+            action=""
+            onSubmit={e => {
+                onSubmit(e)
+            }} 
+            className='flex'
         >
             <input 
                 type="text" 
-                className='p-1 px-3 rounded-full w-full outline-none' 
+                className='p-1 px-3 w-full outline-none' 
                 placeholder="Aa" 
                 onChange={onChange}
                 value={message}
@@ -27,11 +29,11 @@ const Messagebox = ({
 
             <button 
                 type="submit" 
-                className='p-1 rounded-full'
+                className='p-2 bg-gray-400 '
             >
                 <IoSend 
-                    size={24}
-                    fill="" />
+                    size={22}
+                    fill={''} />
             </button>
         </form>
     </div>
