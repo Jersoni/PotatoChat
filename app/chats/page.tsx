@@ -167,7 +167,7 @@ const Inbox = () => {
                 <h1 className="text-gray-200 font-bold">{contact.fullname}</h1>
                 <p className="text-gray-400 text-sm">{contact.email}</p>
               </div>
-              <MdOutlineKeyboardArrowRight size={20} className="fill-gray-400 ml-auto" />
+              {/* <MdOutlineKeyboardArrowRight size={20} className="fill-gray-400 ml-auto" /> */}
             </div>
           )
         })}
