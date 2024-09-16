@@ -1,5 +1,10 @@
 "use client";
+import googleLogo from "@/public/icons/google.png";
+import { ring2 } from "ldrs";
 import "ldrs/ring";
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import { useState } from "react";
 
 // const GoogleSignInButton = () => {
 //   // loading ui
@@ -51,6 +56,7 @@ import "ldrs/ring";
 
 // export default GoogleSignInButton;
 
+import React from 'react'
 
 const GoogleSignInButton = () => {
   return (
