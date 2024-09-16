@@ -1,6 +1,6 @@
 "use client";
 import googleLogo from "@/public/icons/google.png";
-import { ring2 } from "ldrs";
+// import { ring2 } from "ldrs";
 import "ldrs/ring";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const GoogleSignInButton = () => {
   // loading ui
-  ring2.register();
+  // ring2.register();
   const [loading, setLoading] = useState(false);
 
   // sign in click handler
@@ -30,14 +30,14 @@ const GoogleSignInButton = () => {
       >
         {loading ? (
           <div className="absolute left-4 h0-full grid place-items-center">
-            <l-ring-2
+            {/* <l-ring-2
               size="22"
               stroke="2.5"
               stroke-length="0.25"
               bg-opacity="0.0"
               speed="0.8"
               color="black"
-            ></l-ring-2>
+            ></l-ring-2> */}
           </div>
         ) : (
           <Image
