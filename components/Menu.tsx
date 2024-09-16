@@ -23,13 +23,13 @@ const Menu = ({
     <ChakraProvider>
       <div className={`${isOpen ? "translate-y-[370px]" : ""} transition-all duration-[300ms] rounded-sm fixed right-2.5 top-[-300px] flex flex-col items-start h-fit w-fit min-w-[170px] bg-white p-3 z-[1000] `}>
         <div className="flex flex-col items-center w-full p-2 pb-4 pt-2 gap-3"> 
-          <img 
+          {/* <img 
             src={user?.image} 
             alt={`profile image`} 
             height={55}
             width={55}
             className="rounded-full"
-          />
+          /> */}
           <div className="flex flex-col items-center">
             <p className="font-semibold">{user?.name}</p>
             <p>{user?.email}</p>
