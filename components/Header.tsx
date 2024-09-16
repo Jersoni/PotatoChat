@@ -1,12 +1,11 @@
 'use client'
 import { UserProps } from "@/types";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaCircleUser } from "react-icons/fa6";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoIosArrowBack } from "react-icons/io";
-import { useRouter } from "next/navigation";
-// import Menu from "./Menu";
+import Menu from "./Menu";
 
 const Header = ({
     user,
@@ -43,14 +42,14 @@ const Header = ({
                     <IoIosArrowBack size={20} />
                 </button>
                 {recipient && (
-                    <FaCircleUser size={40} />
-                    // <img
-                    //     src={user.image}
-                    //     alt={"User profile"}
-                    //     height={40}
-                    //     width={40}
-                    //     className={`rounded-full`}
-                    // />
+                    // <FaCircleUser size={40} />
+                    <img
+                        src={user?.image}
+                        alt={"User profile"}
+                        height={40}
+                        width={40}
+                        className={`rounded-full`}
+                    />
                 )}
                 <div className={`${darkMode ? "text-gray-400" : ""} flex flex-col ml-2`}>
                     <h1 className='font-semibold'>{recipient?.name}</h1>
@@ -62,17 +61,13 @@ const Header = ({
                 >
                     <HiMenuAlt4 size={30} className="" />
                 </button>
-                {/* <button className="ml-auto" onClick={setDarkMode}>{darkMode ? 'dark' : 'light'}</button>
-                <button
-                onClick={handleSignOutClick}
-                >Sign out</button> */}
             </div>
-            {/* <Menu 
+            <Menu 
                 user={user}
                 isOpen={isMenuOpen} 
                 darkMode={darkMode} 
                 setDarkMode={setDarkMode} 
-            /> */}
+            />
             <div 
                 className={`${isMenuOpen ? "" : "hidden"} fixed top-0 bg-black opacity-20 h-[100vh] w-full z-[500]`}
                 onClick={() => {setIsMenuOpen(false)}}
