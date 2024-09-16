@@ -156,6 +156,7 @@ const Inbox = () => {
             <div 
               onClick={() => router.push(`/chats/${contact.id}`)}
               className="w-full flex flex-row items-center gap-3"
+              key={contact.id}
             >
               {/* user image */}
               {contact.image !== null
