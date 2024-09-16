@@ -148,7 +148,7 @@ const Inbox = () => {
       ></div>
 
       {/* chats */}
-      <div className="p-5 pt-0 flex flex-col gap-6">
+      <div className="p-5 flex flex-col gap-6">
 
         {contacts.map(contact => {
           return (
@@ -157,7 +157,6 @@ const Inbox = () => {
               className="w-full flex flex-row items-center gap-3"
               key={contact.id}
             >
-              <FaCircleUser size={44} className="fill-gray-400" />
               {/* user image */}
               {contact.image !== null
                 ? <img src={contact.image} alt="user profile" className="rounded-full h-11 " />
