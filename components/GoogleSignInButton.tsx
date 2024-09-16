@@ -14,7 +14,11 @@ const GoogleSignInButton = () => {
   // sign in click handler
   const handleClick = () => {
     setLoading(true);
-    signIn("google", { callbackUrl: "/chats" });
+    signIn("google", {
+      callbackUrl:
+        // "/chats"
+        "/",
+    });
   };
 
   return (
