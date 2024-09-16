@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FaCircleUser } from "react-icons/fa6";
-// import { Menu } from "@/components";
+import { Menu } from "@/components";
 
 // const Inbox = () => {
 
