@@ -6,7 +6,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoIosArrowBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
-// import Menu from "./Menu";
+import Menu from "./Menu";
 
 const Header = ({
     user,
@@ -67,12 +67,12 @@ const Header = ({
                 onClick={handleSignOutClick}
                 >Sign out</button> */}
             </div>
-            {/* <Menu 
+            <Menu 
                 user={user}
                 isOpen={isMenuOpen} 
                 darkMode={darkMode} 
                 setDarkMode={setDarkMode} 
-            /> */}
+            />
             <div 
                 className={`${isMenuOpen ? "" : "hidden"} fixed top-0 bg-black opacity-20 h-[100vh] w-full z-[500]`}
                 onClick={() => {setIsMenuOpen(false)}}
