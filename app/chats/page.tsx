@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FaCircleUser } from "react-icons/fa6";
-// import { Menu } from "@/components";
+import { Menu } from "@/components";
 
 const Inbox = () => {
 
@@ -159,10 +159,10 @@ const Inbox = () => {
             >
               <FaCircleUser size={44} className="fill-gray-400" />
               {/* user image */}
-              {/* {contact.image !== null
+              {contact.image !== null
                 ? <img src={contact.image} alt="user profile" className="rounded-full h-11 " />
                 : <FaCircleUser size={44} className="fill-gray-400" />
-              } */}
+              }
               {/* user info */}
               <div>
                 <h1 className="text-gray-200 font-bold">{contact.fullname}</h1>
