@@ -4,31 +4,45 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { FaCircleUser } from "react-icons/fa6";
 import { HiMenuAlt4 } from "react-icons/hi";
+import { IoIosArrowBack } from "react-icons/io";
+import { useRouter } from "next/navigation";
 import Menu from "./Menu";
 
 const Header = ({
     user,
+    recipient,
     darkMode,
     setDarkMode
 } : {
     user?: UserProps
+    recipient?: UserProps
     darkMode: boolean
     setDarkMode: () => void
 }) => {
 
+    // router
+    const router = useRouter()
+
+    // session
     const { data: session, status } = useSession()
+
+    // menu UI
     const [ isMenuOpen, setIsMenuOpen ] = useState(false)
 
+    
     useEffect(() => {
-        if (session) console.log(session)
-
-            console.log(session?.user?.image)
+        if (session) {
+            console.log(session)
+        }
     }, [session])
 
     return (
         <div className="fixed top-0 left-0 right-0">
-            <div className={`${darkMode ? "bg-[#30343b]" : ""} p-3 flex flex-row gap-2 w-full bg-white items-center z-[1500] bg-opacity-80 backdrop-blur-md relative`}>
-                {user && (
+            <div className={`${darkMode ? "bg-[#30343b]" : ""} p-2 pl-0 flex flex-row w-full bg-white items-center z-[1500] bg-opacity-80 backdrop-blur-md relative`}>
+                <button className={`p-3`} onClick={() => { router.push('/chats') }}>
+                    <IoIosArrowBack size={20} />
+                </button>
+                {recipient && (
                     <FaCircleUser size={40} />
                     // <img
                     //     src={user.image}
@@ -38,9 +52,9 @@ const Header = ({
                     //     className={`rounded-full`}
                     // />
                 )}
-                <div className={`${darkMode ? "text-gray-400" : ""} flex flex-col`}>
-                    <h1 className='font-semibold'>Patatas</h1>
-                    <h6 className='text-sm text-opacity-40'>Jinky Borja Suson</h6>
+                <div className={`${darkMode ? "text-gray-400" : ""} flex flex-col ml-2`}>
+                    <h1 className='font-semibold'>{recipient?.name}</h1>
+                    <h6 className='text-sm text-opacity-40'>{recipient?.email}</h6>
                 </div>
                 <button 
                     className="p-1.5 rounded-full ml-auto"

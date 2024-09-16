@@ -3,15 +3,20 @@ import { ChatWindow, Header, Messagebox } from "@/components";
 import supabase from "@/lib/supabaseClient";
 import { MessageProps, UserProps } from "@/types";
 import { useSession } from "next-auth/react";
+import { useParams } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
-
 export default function Home() {
+
+  // params
+  const params = useParams()
+
   // dark mode
   const [darkMode, setDarkMode] = useState(false);
 
   // user
   const { data: session, status } = useSession()
+  const [recipient, setRecipient] = useState<UserProps>();
   const [user, setUser] = useState<UserProps>();
 
   // get user data
@@ -34,6 +39,24 @@ export default function Home() {
     }
   }, [session]);
 
+  // get recipient data
+  useEffect(() => {
+    const getRecipientsData = async () => {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', params.user_id)
+
+      if (error) {
+        console.log(error)
+      } else {
+        setRecipient(data[0])
+      }
+    }
+
+    getRecipientsData()
+  }, [params])
+
   // message
   const [message, setMessage] = useState("");
 
@@ -51,8 +74,8 @@ export default function Home() {
     e.preventDefault();
     const { error } = await supabase.from("messages").insert({
       sender_id: user?.id,
-      reciever_id: 2,
       message: message,
+      chat_id: convoID
     });
 
     if (error) {
@@ -92,20 +115,46 @@ export default function Home() {
     };
   }, []);
 
+  // fetch conversation
+  const [ convoID, setConvoID ] = useState<number>()
+
+  useEffect(() => {
+    const fetchConvo = async () => {
+      const { data, error } = await supabase
+        .from("chats")
+        .select()
+        .contains('participants', [user?.id, recipient?.id])
+
+      if (error) {
+        console.log(error)
+      } else {
+        setConvoID(data[0].id)
+      }
+    }
+
+    if (user && recipient) {
+      fetchConvo()
+    }
+  }, [user, recipient])
+
   // fetch all from table 'messages'
   useEffect(() => {
     const fetchMessages = async () => {
       const { data, error } = await supabase
         .from("messages")
         .select("*")
-        .order("created_at");
+        .eq('chat_id', convoID)
 
-      if (error) console.log(error);
-      else setMessages(data);
+      if (error) 
+        console.log(error);
+      else 
+        setMessages(data)
     };
 
-    fetchMessages();
-  }, []);
+    if (convoID) {
+      fetchMessages();
+    }
+  }, [convoID]);
 
   return (
     <div
@@ -114,6 +163,7 @@ export default function Home() {
     >
       <Header
         user={user}
+        recipient={recipient}
         darkMode={darkMode}
         setDarkMode={() => setDarkMode(!darkMode)}
       />

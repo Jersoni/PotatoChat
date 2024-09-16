@@ -1,7 +1,7 @@
-import { ChakraProvider, Switch } from "@chakra-ui/react";
-import { MdOutlineLogout } from "react-icons/md";
-import { signOut } from "next-auth/react";
 import { UserProps } from "@/types";
+import { ChakraProvider, Switch } from "@chakra-ui/react";
+import { signOut } from "next-auth/react";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Menu = ({
     user,
@@ -21,8 +21,8 @@ const Menu = ({
 
   return (
     <ChakraProvider>
-      <div className={`${isOpen ? "translate-y-[17.5rem]" : ""} transition-all duration-[300ms] rounded-sm fixed right-2.5 top-[-200px] flex flex-col items-start h-fitw-fit bg-white p-3 z-[1000] `}>
-        <div className="flex flex-col items-center w-full p-2 pb-4 pt-2 gap-3">
+      <div className={`${isOpen ? "translate-y-[370px]" : ""} transition-all duration-[300ms] rounded-sm fixed right-2.5 top-[-300px] flex flex-col items-start h-fit w-fit min-w-[170px] bg-white p-3 z-[1000] `}>
+        <div className="flex flex-col items-center w-full p-2 pb-4 pt-2 gap-3"> 
           <img 
             src={user?.image} 
             alt={`profile image`} 
@@ -31,8 +31,8 @@ const Menu = ({
             className="rounded-full"
           />
           <div className="flex flex-col items-center">
-            <p className="font-semibold">{user?.fullname}</p>
-            <p>@{user?.username}</p>
+            <p className="font-semibold">{user?.name}</p>
+            <p>{user?.email}</p>
           </div>
         </div>
         <button className="py-3 px-2 w-full flex flex-row items-center justify-between border-y border-gray-300">

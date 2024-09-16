@@ -4,6 +4,8 @@ export interface UserProps {
     fullname: string
     email: string
     image: string
+    name: string
+    password?: string
 }
   
 export interface MessageProps {

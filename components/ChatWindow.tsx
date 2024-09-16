@@ -25,7 +25,8 @@ const ChatWindow = ({
           <ChatBubble 
             user={user} 
             data={row}
-            role={user?.id === row.sender_id ? "sender" : "reciever"} 
+            role={
+              user?.id === row.sender_id ? "sender" : "reciever"} 
             key={row.id}
           />
         )
