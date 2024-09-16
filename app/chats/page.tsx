@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FaCircleUser } from "react-icons/fa6";
-import { Menu } from "@/components";
+// import { Menu } from "@/components";
 
 const Inbox = () => {
 
@@ -136,12 +136,12 @@ const Inbox = () => {
           />
         </button>
       </div>
-      <Menu 
+      {/* <Menu 
         user={user} 
         isOpen={menuOpen} 
         darkMode={darkMode}
         setDarkMode={() => setDarkMode(!darkMode)}
-      />\
+      /> */}
       <div 
           className={`${menuOpen ? "" : "hidden"} fixed top-0 bg-black opacity-20 h-[100vh] w-full z-[500]`}
           onClick={() => {setMenuOpen(false)}}
