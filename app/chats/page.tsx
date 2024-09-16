@@ -1,13 +1,13 @@
-// 'use client'
-// import supabase from "@/lib/supabaseClient";
-// import { UserProps } from "@/types";
-// import { useSession } from "next-auth/react";
-// import { useRouter } from 'next/navigation';
-// import { useEffect, useState } from "react";
-// import { HiMenuAlt4 } from "react-icons/hi";
-// import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-// import { FaCircleUser } from "react-icons/fa6";
-// // import { Menu } from "@/components";
+'use client'
+import supabase from "@/lib/supabaseClient";
+import { UserProps } from "@/types";
+import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { HiMenuAlt4 } from "react-icons/hi";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { FaCircleUser } from "react-icons/fa6";
+// import { Menu } from "@/components";
 
 // const Inbox = () => {
 
