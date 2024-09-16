@@ -16,7 +16,6 @@ const Inbox = () => {
   // session, user, and contacts
   const { data: session, status } = useSession()
   const [user, setUser] = useState<UserProps>();
-  const [ registered, setRegistered ] = useState(false)
   const [ contacts, setContacts ] = useState<UserProps[]>([])
 
   useEffect(() => {
@@ -158,11 +157,12 @@ const Inbox = () => {
               className="w-full flex flex-row items-center gap-3"
               key={contact.id}
             >
+              <FaCircleUser size={44} className="fill-gray-400" />
               {/* user image */}
-              {contact.image !== null
+              {/* {contact.image !== null
                 ? <img src={contact.image} alt="user profile" className="rounded-full h-11 " />
                 : <FaCircleUser size={44} className="fill-gray-400" />
-              }
+              } */}
               {/* user info */}
               <div>
                 <h1 className="text-gray-200 font-bold">{contact.fullname}</h1>
