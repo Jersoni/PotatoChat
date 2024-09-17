@@ -25,7 +25,7 @@ const GoogleSignInButton = () => {
     <div className="">
       <button
         onClick={handleClick}
-        className="bg-white p-3 min-w-[15rem] max-w-[24rem] w-[80vw] rounded-md flex flex-row items-center justify-center gap-3 active:bg-gray-100 font-semibold border border-gray-300 relative"
+        className="bg-white p-3 w-full rounded-md flex flex-row items-center justify-center gap-3 active:bg-gray-100 font-semibold border border-gray-300 relative"
         // className="bg-white p-3 min-w-[15rem] max-w-[24rem] w-[80vw] rounded-lg flex flex-row items-center justify-center gap-3 active:bg-gray-100 font-semibold border border-gray-300"
       >
         {loading ? (

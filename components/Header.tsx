@@ -38,20 +38,19 @@ const Header = ({
 
     return (
         <div className="fixed top-0 left-0 right-0">
-            <div className={`${darkMode ? "bg-[#30343b]" : ""} p-2 pl-0 flex flex-row w-full bg-white items-center z-[1500] bg-opacity-80 backdrop-blur-md relative`}>
+            <div className={`${darkMode ? "bg-[#30343b]" : ""} p-2 pl-0 flex flex-row w-full bg-white items-center z-[1500] relative`}>
                 <button className={`p-3`} onClick={() => { router.push('/chats') }}>
                     <IoIosArrowBack size={20} />
                 </button>
-                {recipient && (
-                    <FaCircleUser size={40} />
-                    // <img
-                    //     src={user.image}
-                    //     alt={"User profile"}
-                    //     height={40}
-                    //     width={40}
-                    //     className={`rounded-full`}
-                    // />
-                )}
+                {recipient
+                    ? <img
+                        src={recipient.image}
+                        alt={"User profile"}
+                        height={40}
+                        width={40}
+                        className={`rounded-full`} />
+                    : <FaCircleUser size={40} />
+                }
                 <div className={`${darkMode ? "text-gray-400" : ""} flex flex-col ml-2`}>
                     <h1 className='font-semibold'>{recipient?.name}</h1>
                     <h6 className='text-sm text-opacity-40'>{recipient?.email}</h6>

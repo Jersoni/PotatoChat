@@ -32,7 +32,7 @@ const Menu = ({
                 width={55}
                 className="rounded-full"
               />
-            : <FaCircleUser size={40} />
+            : <FaCircleUser size={50} className="fill-slate-800" />
           }
           <div className="flex flex-col items-center">
             <p className="font-semibold">{user?.name}</p>

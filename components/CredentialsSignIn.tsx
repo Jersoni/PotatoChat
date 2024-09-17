@@ -45,10 +45,10 @@ const CredentialsSignIn = () => {
   }
 
   return (
-    <div className="">
+    <div className="w-full">
       <form 
         onSubmit={onSubmit} 
-        className="flex flex-col gap-3">
+        className="flex flex-col gap-3 w-full">
         <input
           required
           autoComplete="off"
