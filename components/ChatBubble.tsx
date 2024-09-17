@@ -23,9 +23,9 @@ const ChatBubble = ({
         className={`
           ${
             role === "reciever"
-              ? "bg-white !rounded-bl-md border border-gray-400"
-              : "bg-gray-800 text-white !rounded-br-md ml-auto"
-          }  p-2 rounded-2xl px-5 w-fit`}
+              ? "bg-white border border-gray-400"
+              : "bg-gray-800 text-white ml-auto"
+          }  p-2 rounded-full px-5 w-fit`}
       >
         {data.message}
       </div>

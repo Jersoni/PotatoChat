@@ -71,18 +71,23 @@ export default function Home() {
   // messagebox submit handler
   const MessageSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { error } = await supabase.from("messages").insert({
-      sender_id: user?.id,
-      message: message,
-      chat_id: convoID,
-    });
-
-    if (error) {
-      console.log(error);
+    if (message.trim().length === 0) {
+      console.log('message empty')
     } else {
-      console.log("message sent successfully.");
-      setMessage("");
+      const { error } = await supabase.from("messages").insert({
+        sender_id: user?.id,
+        message: message,
+        chat_id: convoID,
+      });
+  
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("message sent successfully.");
+        setMessage("");
+      }
     }
+
   };
 
   // TODO: realtime subscription

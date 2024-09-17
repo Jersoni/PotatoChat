@@ -1,5 +1,5 @@
 'use client'
-import { GoogleSignInButton } from "@/components"
+import { GoogleSignInButton, CredentialsSignIn } from "@/components"
 
 const Login = () => {
 
@@ -10,6 +10,12 @@ const Login = () => {
     >
       <div className="flex flex-col gap-6">
         <h1 className="font-bold text-white text-center text-2xl">Sign In</h1>     
+        <CredentialsSignIn />
+        <div className="flex flex-row items-center gap-4">
+          <div className="border-b border-gray-600 w-full"></div>
+          <p className="text-gray-400 text-center">or</p>
+          <div className="border-b border-gray-600 w-full"></div>
+        </div>
         <GoogleSignInButton />
       </div>
     </div>

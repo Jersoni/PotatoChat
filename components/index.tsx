@@ -5,6 +5,7 @@ import Messagebox from "./Messagebox";
 import GoogleSignInButton from "./GoogleSignInButton";
 import Menu from "./Menu";
 import SessionWrapper from "./SessionWrapper";
+import CredentialsSignIn from "./CredentialsSignIn";
 
 export {
   ChatBubble,
@@ -13,5 +14,6 @@ export {
   Header,
   Messagebox,
   Menu,
-  SessionWrapper
+  SessionWrapper,
+  CredentialsSignIn
 };
