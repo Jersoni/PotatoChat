@@ -42,7 +42,7 @@ const Header = ({
                 <button className={`p-3`} onClick={() => { router.push('/chats') }}>
                     <IoIosArrowBack size={20} />
                 </button>
-                {recipient
+                {recipient?.image
                     ? <img
                         src={recipient.image}
                         alt={"User profile"}
