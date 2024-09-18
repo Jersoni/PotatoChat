@@ -11,13 +11,13 @@ const ChatWindow = ({
   messages: MessageProps[] 
 }) => {
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: document.documentElement.scrollHeight,
-  //     behavior: 'smooth',
-  //   });
-  // })
-
+  useEffect(() => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
+  }, [messages])
+  
   return (
     <div className="p-3 gap-1 py-20 flex flex-col">
       {messages.map((row) => {

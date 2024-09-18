@@ -83,8 +83,9 @@ export default function Home() {
       if (error) {
         console.log(error);
       } else {
-        console.log("message sent successfully.");
+        console.log("message sent successfulley.");
         setMessage("");
+        // window.scrollTo({top: 10000, behavior: 'smooth'})
       }
     }
 
@@ -157,6 +158,39 @@ export default function Home() {
       fetchMessages();
     }
   }, [convoID]);
+
+  const [page, setPage] = useState(1)
+  const [allChats, setAllChats] = useState<MessageProps[]>([])
+
+  // TODO: fetch next page on scroll
+  // test get messages
+  const getMessages = async () => {
+    const { data, error } = await supabase
+    .from('messages')
+    .select("*")
+    .eq('chat_id', 1)
+    .lt('created_at', '2024-09-17 15:11:07.959166+00')
+    .order('created_at', {ascending: true})
+    .limit(10)
+
+    if (error) {
+      console.log(error)
+    } else {
+      setAllChats(data)
+    }
+  }
+
+  useEffect(() => {
+    console.log(allChats)
+  }, [allChats])
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY === 0) {
+        getMessages()
+      }
+    })
+  }, [])
 
   return (
     <div

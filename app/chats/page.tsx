@@ -149,7 +149,6 @@ const Inbox = () => {
 
       {/* chats */}
       <div className="p-5 flex flex-col gap-6">
-
         {contacts.map(contact => {
           return (
             <div 

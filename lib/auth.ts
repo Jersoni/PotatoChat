@@ -1,6 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials"
 import supabase from "./supabaseClient";
 
 export const authOption: NextAuthOptions = {
@@ -14,18 +14,17 @@ export const authOption: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
-      name: 'Credentials',
+      name: 'credentials',
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "Your username" },
-        password: { label: "Password", type: "password" },
+        username: { label: "username", type: "text" },
+        password: { label: "password", type: "password" },
       },
       async authorize(credentials, req) {
 
-        if (credentials === null) return null
-
+        // if (credentials === null) return null
         const { data, error } = await supabase
           .from('users')
-          .select('*')
+          .select()
           .eq('username', credentials?.username)
           .eq('password', credentials?.password)
           .single()
@@ -40,7 +39,7 @@ export const authOption: NextAuthOptions = {
     // ...add more providers here
   ],
   // pages: {
-  //   signIn: '/auth/signin',  // Custom sign-in page
+  //   signIn: '/chats',  // Custom sign-in page
   //   signOut: '/auth/signout', // Custom sign-out page
   //   error: '/auth/error', // Custom error page
   //   verifyRequest: '/auth/verify-request', // Used for email verification messages
@@ -53,12 +52,12 @@ export const authOption: NextAuthOptions = {
   //     }
   //     // Return true to allow sign-in
   //     if (profile.email) {
-        
+  //       return true;
   //     }
   //     return true;
   //   },
   // },
-  // secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   debug: true,
 };
 
