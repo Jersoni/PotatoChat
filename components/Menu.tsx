@@ -35,8 +35,10 @@ const Menu = ({
             : <FaCircleUser size={50} className="fill-slate-800" />
           }
           <div className="flex flex-col items-center">
-            <p className="font-semibold">{user?.name}</p>
-            <p>{user?.email}</p>
+            <p className="font-semibold">
+              <span className="text-gray-400 mr-0.5">@</span>
+              {user?.username}
+            </p>
           </div>
         </div>
         <button className="py-3 px-2 w-full flex flex-row items-center justify-between border-y border-gray-300">

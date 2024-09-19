@@ -57,6 +57,20 @@ export const authOption: NextAuthOptions = {
   //     return true;
   //   },
   // },
+  callbacks: {
+    async jwt({ token, user }) {
+      // Attach the username to the token if user is present
+      if (user) {
+        token.username = user.username;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Add the username to the session object
+      session.user.username = token.username;
+      return session;
+    }
+  },
   secret: process.env.NEXTAUTH_SECRET,
   debug: true,
 };

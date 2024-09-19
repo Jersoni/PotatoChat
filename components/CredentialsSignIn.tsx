@@ -41,16 +41,14 @@ const CredentialsSignIn = () => {
           type="text"
           name="username"
           placeholder="username"
-          className="w-full p-3 rounded-md font-semibold outline-none"
-          />
+        />
         <input
           required
           autoComplete="off"
           type="password"
           name="password"
           placeholder="password"
-          className="w-full p-3 rounded-md font-semibold outline-none"
-          />
+        />
         <button 
           type={"submit"} 
           className="p-3 bg-[#598de0] text-gray-100 rounded-md font-bold mt-2"
@@ -66,7 +64,7 @@ const CredentialsSignIn = () => {
                     >Loading...</span>
                 </div>
               </div>
-            ) : "Sign in"}
+            ) : "Log in"}
         </button>
       </form>
       {error && <div className="text-red-500 mt-2 w-full">{error}</div>}  {/* Display error */}

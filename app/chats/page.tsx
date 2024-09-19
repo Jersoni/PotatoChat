@@ -28,7 +28,7 @@ const Inbox = () => {
       const { data, error } = await supabase
         .from("users")
         .select("*")
-        .eq("email", session?.user?.email);
+        .eq("username", session?.user?.username);
 
       if (error) {
         console.log(error);
@@ -40,29 +40,52 @@ const Inbox = () => {
         if (data.length > 0) {
           console.log('set user data: ')
           setUser({...data[0], ...session?.user})
-        } else { // if no user found
-          
-          const { data: signupResult, error: signupError } = await supabase
-            .from('users')
-            .insert({ 
-              name: session?.user?.name, 
-              email: session?.user?.email,
-              image: session?.user?.image
-            })
-          
-          if (signupError) {
-            console.log(signupError)
-          } else {
-            console.log('user created: ')
-            console.log(signupResult)
-          }
+        } else {
+          console.log('user not found')
         }
       }
     };
+  // fetch user by email or google account
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const { data, error } = await supabase
+  //       .from("users")
+  //       .select("*")
+  //       .eq("email", session?.user?.email);
 
-    if (session?.user?.email) {
-      fetchUser();
-    }
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       console.log('get user data: ')
+  //       console.log(data)
+
+  //       // if user is found in database
+  //       if (data.length > 0) {
+  //         console.log('set user data: ')
+  //         setUser({...data[0], ...session?.user})
+  //       } else { // if no user found
+          
+  //         const { data: signupResult, error: signupError } = await supabase
+  //           .from('users')
+  //           .insert({ 
+  //             name: session?.user?.name, 
+  //             email: session?.user?.email,
+  //             image: session?.user?.image
+  //           })
+          
+  //         if (signupError) {
+  //           console.log(signupError)
+  //         } else {
+  //           console.log('user created: ')
+  //           console.log(signupResult)
+  //         }
+  //       }
+  //     }
+  //   };
+
+  if (session?.user.username) {
+    fetchUser();
+  }
   }, [session]);
 
   // get all contacts 
@@ -162,10 +185,10 @@ const Inbox = () => {
                 : <FaCircleUser size={44} className="fill-gray-400" />
               }
               {/* user info */}
-              <div>
-                <h1 className="text-gray-200 font-bold">{contact.fullname}</h1>
-                <p className="text-gray-400 text-sm">{contact.email}</p>
-              </div>
+                <div>
+                  <h1 className="text-gray-200 font-bold">{contact.username}</h1>
+                  <p className="text-gray-400 text-sm">Lorem ipsum dolor sit amet</p>
+                </div>
               {/* <MdOutlineKeyboardArrowRight size={20} className="fill-gray-400 ml-auto" /> */}
             </div>
           )
