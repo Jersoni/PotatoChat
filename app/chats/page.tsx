@@ -1,7 +1,7 @@
 'use client'
 import supabase from "@/lib/supabaseClient";
 import { UserProps } from "@/types";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
@@ -85,6 +85,8 @@ const Inbox = () => {
 
   if (session?.user.username) {
     fetchUser();
+  } else {
+    signOut({ callbackUrl: "/" })
   }
   }, [session]);
 

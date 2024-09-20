@@ -24,7 +24,7 @@ export default function Home() {
       const { data, error } = await supabase
         .from("users")
         .select("*")
-        .eq("email", session?.user?.email);
+        .eq("username", session?.user?.username);
 
       if (error) {
         console.log(error);
@@ -33,10 +33,28 @@ export default function Home() {
       }
     };
 
-    if (session?.user?.email) {
+    if (session?.user?.username) {
       fetchUser();
     }
   }, [session]);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     const { data, error } = await supabase
+  //       .from("users")
+  //       .select("*")
+  //       .eq("email", session?.user?.email);
+
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       setUser({ ...data[0], ...session?.user });
+  //     }
+  //   };
+
+  //   if (session?.user?.email) {
+  //     fetchUser();
+  //   }
+  // }, [session]);
 
   // get recipient data
   useEffect(() => {
